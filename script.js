@@ -263,19 +263,7 @@ function stat_lib() {
 
         })
 }
-if ("index.html" === path || path === "") {
-    alive();
-    cpu_temp();
-    serv_log();
-    space();
-    stat_lib()
-    setInterval(alive, 5000)
-    setInterval(cpu_temp, 5000)
-    setInterval(serv_log, 10000)
 
-
-
-}
 
 function search_check() {
     if (search.value !== search_temp || (is_show !== was_show ) )  {
@@ -353,7 +341,19 @@ if ("search.html" === path) {
 }
 
 
+else  {
+    alive();
+    cpu_temp();
+    serv_log();
+    space();
+    stat_lib()
+    setInterval(alive, 5000)
+    setInterval(cpu_temp, 5000)
+    setInterval(serv_log, 10000)
 
+
+
+}
 
 
 button_container.addEventListener("click", function () {
