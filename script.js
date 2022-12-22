@@ -263,7 +263,7 @@ function stat_lib() {
 
         })
 }
-if ("index.html" === path) {
+if ("index.html" === path || path === "") {
     alive();
     cpu_temp();
     serv_log();
