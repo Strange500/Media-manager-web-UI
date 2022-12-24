@@ -15,6 +15,8 @@ const log = document.getElementById("log")
 const alive_var = document.getElementById("alive")
 const nb_show = document.getElementById("nb_show")
 const uncomplete = document.getElementById("uncomplete")
+const dl_div = document.getElementById("downloading")
+
 
 // var for searh.html
 const search = document.getElementById("search")
@@ -319,6 +321,55 @@ function dl() {
 
 }
 
+function dl_check(){
+    fetch(base_url+"check_dl")
+        .then(data => data.json())
+        .then(data => {
+            dl_div.innerHTML = ""
+
+            for (let elt in data["files"]) {
+                let dic = data["files"][elt]
+                let div_dl = document.createElement("div")
+                div_dl.id = "div_dl"
+                div_dl.textContent = dic["title"]
+
+                let pg_bar_c = document.createElement("div")
+                pg_bar_c.classList.add("progress_bar")
+
+                let bar = document.createElement("div")
+                bar.classList.add("progess_bar_green")
+                bar.style = "width : "+dic["percent"]+"%;"
+
+                let div_t = document.createElement("div")
+                div_t.style = "display: flex;"
+
+                let size = document.createElement("h5")
+                size.textContent = dic["size"]+"  "+dic["speed"]+"/s"
+
+                let bt_stop = document.createElement("a")
+                bt_stop.id = "bt-stop"
+
+                bt_stop.textContent="hello"
+                bt_stop.addEventListener("click", function (){
+                    console.log(base_url+"stop_dl/?url="+dic["url"])
+                    fetch(base_url+"stop_dl/?url="+dic["url"])
+                })
+
+
+
+                pg_bar_c.appendChild(bar)
+
+                div_dl.appendChild(pg_bar_c)
+                div_t.appendChild(size)
+                div_t.appendChild(bt_stop)
+                div_dl.appendChild(div_t)
+
+                dl_div.appendChild(div_dl)
+
+            }
+        })
+}
+
 if ("search.html" === path) {
     show_check.checked = true
 
@@ -349,6 +400,7 @@ stat_lib()
 setInterval(alive, 5000)
 setInterval(cpu_temp, 5000)
 setInterval(serv_log, 10000)
+setInterval(dl_check, 1000)
 
 
 
