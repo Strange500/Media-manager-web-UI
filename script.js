@@ -1,7 +1,7 @@
 //  Gloabl var
 //const base_url = "http://82.65.222.143:8080/";
 //const base_url = "http://127.0.0.1:8080/"
-const base_url = "http://82.65.222.143:8080/"
+const base_url = "http://82.65.222.143:8081/"
 const path = document.location.pathname.toString().split("/").at(-1)
 
 // var for index.html
