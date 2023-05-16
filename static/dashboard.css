@@ -19,6 +19,10 @@
 .dashboard_center_box {
     width: 55%;
     background: blue;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .dashboard_right_box {
@@ -153,5 +157,40 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.center_main_box {
+    background: green;
+    height: 60%;
+    width: 100%;
+    margin-top: -7vh;
+}
+.center_sub_box {
+    margin-top: 5vh;
+    background: crimson;
+    height: 20%;
+    width: 100%;
+}
+.main_upper_box {
+    display: flex;
+    width: 100%;
+    background: darkcyan;
+    height: 75%;
+}
+
+.main_log_box {
+    width: 20%;
+    background: black;
+
+}
+
+.main_schedule_box {
+    width: 45%;
+    background: bisque;
+}
+
+.main_services_box {
+    width: 35%;
+    background: darkmagenta;
 }
 
