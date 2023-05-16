@@ -1,5 +1,157 @@
 .main_page {
     display: flex;
     height: 100%;
+    background: #1f1e1e;
+}
+
+.dashboard_box {
+    display: flex;
+    width: 90%;
+}
+
+.dashboard_left_box {
+    width: 27.5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.dashboard_center_box {
+    width: 55%;
+    background: blue;
+}
+
+.dashboard_right_box {
+    width: 27.5%;
+    background: red;
+}
+
+.disk_usage_box {
+    box-sizing: border-box;
+    background: #131212;
+    border: 0.1vh solid #c708c7;
+    border-radius: 1%;
+    width: 90%;
+    height: 50%;
+}
+
+.cpu_temp_box {
+    border: 0.1vh solid #c708c7;
+    border-radius: 1%;
+    margin: 3vh;
+    height: 30%;
+    width: 90%;
+    background: #131212;
+}
+
+.box_title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10%;
+    border-bottom: 0.1vh solid #c708c7;
+}
+
+.disk_display_box {
+    height: 75%;
+}
+
+.disk_box {
+    border-bottom: 0.1vh solid #c708c7;
+    display: flex;
+    flex-direction: column;
+    height: 33.3%;
+}
+
+.disk_stat_anishowmov {
+    height: 15%;
+}
+
+.disk_title {
+    font-weight: bold;
+    position: relative;
+    margin: .5vh;
+    margin-bottom: 3vh;
+}
+.disk_fill_stat {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.progress_bar {
+    border-radius: 3%;
+    border: .1vh solid white;
+    height: 20%;
+    margin-left: 1vh;
+    margin-right: 1vh;
+    background: cornsilk;
+}
+
+.progress {
+    width: 70%;
+    height: 100%;
+    background: green;
+}
+
+#disk_bar_stat {
+    display: flex;
+}
+
+#disk_progress_stat_anime {
+    background: red;
+    width: 30%;
+}
+
+#disk_progress_stat_movie {
+    background: green;
+    width: 30%;
+}
+
+#disk_progress_stat_show {
+    width: 40%;
+    background: yellow;
+}
+
+#disk_repartion_list {
+    margin-left: 3vh;
+    display: flex;
+}
+
+.disk_repartion_item {
+    margin-top: 1vh;
+    margin-left: 4vh;
+}
+#disk_repartion_list li:nth-child(1) {
+    color: red;
+}
+
+#disk_repartion_list li:nth-child(2) {
+    color: yellow;
+}
+
+#disk_repartion_list li:nth-child(3) {
+    color: green;
+}
+
+.cpu_temp_display_box {
+    height: 100%;
+    padding-left: 1vh;
+    padding-right: 1vh;
+}
+
+.temp_designation {
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+}
+
+.cpu_temp {
+    font-size: 200%;
+    background: #1f1e1e;
+    border: 0.1vh solid #c708c7;
+    height: 28%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
