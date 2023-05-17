@@ -180,7 +180,9 @@
 
 .main_log_box {
     width: 20%;
+    height: 100%;
     background: black;
+    box-sizing: border-box;
 
 }
 
@@ -194,3 +196,113 @@
     background: darkmagenta;
 }
 
+.main_bottom_graph_box {
+    height: 25%;
+}
+.div_scroll_bar {
+    height: 90%;
+    overflow-y: scroll;
+}
+.list_log {
+    list-style: none;
+    background: chartreuse;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.list_log li {
+    height: 20%;
+}
+
+.schedule_box {
+    display: flex;
+    flex-direction: column;
+    height: 90%;
+    background: darksalmon;
+}
+.schedule_item_default {
+    display: flex;
+    align-items: center;
+    margin: 1vh;
+    background: aliceblue;
+    height: 30%;
+}
+
+.schedule_poster {
+    height: 90%;
+}
+
+.schedule_desc {
+    width: 100%;
+    display: block;
+
+}
+.schedule_desc h5 {
+    margin-top: 1vh;
+    margin-left: 1vh;
+}
+
+.schedule_title_type {
+    display: flex;
+    position: relative;
+    margin-left: 1vh;
+}
+.schedule_title_type .schedule_type {
+    display: flex;
+    position: absolute;
+    right: 0;
+}
+
+.services_box {
+    height: 45%;
+    background: cornsilk;
+    display: flex;
+    flex-direction: column;
+}
+
+.service_logo {
+    width: 10%;
+    margin-right: 1vh;
+}
+
+.service {
+    margin: 1vh;
+    height: 10%;
+    align-items: center;
+    display: flex;
+    background: cyan;
+}
+.main_bottom_box {
+    height: 25%;
+    display:flex;
+}
+.main_bottom_stat_box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 40%;
+    background: azure;
+}
+.main_bottom_stat_box h5 {
+    margin-bottom: 1.5vh;
+}
+
+.main_bottom_graph_box {
+    height: 100%;
+    width: 60%;
+    background: firebrick;
+    display: flex;
+    align-items: center;
+}
+
+.chart {
+  position: relative;
+  width: 36%;
+    height: 60%;
+    background: yellow;
+  border-radius: 50%;
+    margin-left: 2vh ;
+}
