@@ -26,7 +26,6 @@
 
 .dashboard_right_box {
     width: 27.5%;
-    background: red;
 }
 
 .disk_usage_box {
@@ -92,7 +91,6 @@
 }
 
 .progress {
-    width: 70%;
     height: 100%;
     background: green;
 }
@@ -103,16 +101,13 @@
 
 #disk_progress_stat_anime {
     background: red;
-    width: 30%;
 }
 
 #disk_progress_stat_movie {
     background: green;
-    width: 30%;
 }
 
 #disk_progress_stat_show {
-    width: 40%;
     background: yellow;
 }
 
@@ -356,6 +351,7 @@
   width:100%; /* Adjust the desired width of the container */
   height: 35%; /* Adjust the desired height of the container */
   overflow-y: auto;
+    background: #1f1e1e;
 }
 
 .list_reseach {
@@ -402,3 +398,67 @@
 .add_torrent_box {
     width: 50%;
 }
+
+.dashboard_right_box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.right_dl_box {
+    width: 90%;
+    height: 50%;
+    background: #131212;
+    border: 0.1vh solid #c708c7;
+    border-radius: 1%;
+
+}
+
+.dl_torrent_box {
+    height: 89.9%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.dl_torrent_item {
+    margin: 1vh;
+    background: #1f1e1e;
+    border-radius: 2%;
+    padding: .5vh;
+    padding-bottom: 1.5vh;
+    border: 0.1vh solid #c708c7;
+}
+
+.dl_torrent_item .progress_bar {
+    margin-top: 1vh;
+}
+
+
+.dl_title_stat{
+    display: flex;
+    border-bottom: 0.1vh solid #c708c7;
+    position: relative;
+}
+.dl_title_stat h5 {
+    margin: .5vh;
+}
+.dl_title_stat h5:nth-child(1) {
+    font-weight: bold;
+}
+.dl_title_stat h5:nth-child(2) {
+    position: absolute;
+    right: 0;
+}
+.right_server_errors {
+    margin: 3vh;
+    width: 90%;
+    height: 30%;
+    background: #131212;
+    border: .1vh solid #c708c7;
+    border-radius: 1%;
+}
+
+.ser

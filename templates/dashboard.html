@@ -46,7 +46,7 @@
             <div class="disk_box">
               <div class="disk_title">
                 Anime :
-                <div class="disk_fill_stat">
+                <div class="disk_fill_stat" id="fill_stat_anime">
                   10mo/10To
                 </div>
               </div>
@@ -60,7 +60,7 @@
             <div class="disk_box">
               <div class="disk_title">
                 Show :
-                <div class="disk_fill_stat">
+                <div class="disk_fill_stat" id="fill_stat_show">
                   10mo/10To
                 </div>
               </div>
@@ -74,7 +74,7 @@
             <div class="disk_box">
               <div class="disk_title">
                 Movie :
-                <div class="disk_fill_stat">
+                <div class="disk_fill_stat" id="fill_stat_movie">
                   10mo/10To
                 </div>
               </div>
@@ -384,7 +384,147 @@
 
       </div>
       <div class="dashboard_right_box">
-        right
+
+        <div class="right_dl_box">
+          <div class="box_title">
+            <h3>Torrent</h3>
+          </div>
+          <div class="dl_torrent_box">
+
+            <div class="dl_torrent_item">
+              <div class="dl_title_stat">
+                <h5>Oshi no Ko</h5>
+                <h5>10mmo/10go</h5>
+              </div>
+              <div class="progress_bar">
+                <div class="progress"></div>
+              </div>
+              <h5>10mo/s</h5>
+            </div>
+
+            <div class="dl_torrent_item">
+              <div class="dl_title_stat">
+                <h5>Oshi no Ko</h5>
+                <h5>10mmo/10go</h5>
+              </div>
+              <div class="progress_bar">
+                <div class="progress"></div>
+              </div>
+              <h5>10mo/s</h5>
+            </div>
+
+            <div class="dl_torrent_item">
+              <div class="dl_title_stat">
+                <h5>Oshi no Ko</h5>
+                <h5>10mmo/10go</h5>
+              </div>
+              <div class="progress_bar">
+                <div class="progress"></div>
+              </div>
+              <h5>10mo/s</h5>
+            </div>
+
+            <div class="dl_torrent_item">
+              <div class="dl_title_stat">
+                <h5>Oshi no Ko</h5>
+                <h5>10mmo/10go</h5>
+              </div>
+              <div class="progress_bar">
+                <div class="progress"></div>
+              </div>
+              <h5>10mo/s</h5>
+            </div>
+
+            <div class="dl_torrent_item">
+              <div class="dl_title_stat">
+                <h5>Oshi no Ko</h5>
+                <h5>10mmo/10go</h5>
+              </div>
+              <div class="progress_bar">
+                <div class="progress"></div>
+              </div>
+              <h5>10mo/s</h5>
+            </div>
+
+            <div class="dl_torrent_item">
+              <div class="dl_title_stat">
+                <h5>Oshi no Ko</h5>
+                <h5>10mmo/10go</h5>
+              </div>
+              <div class="progress_bar">
+                <div class="progress"></div>
+              </div>
+              <h5>10mo/s</h5>
+            </div>
+
+            <div class="dl_torrent_item">
+              <div class="dl_title_stat">
+                <h5>Oshi no Ko</h5>
+                <h5>10mmo/10go</h5>
+              </div>
+              <div class="progress_bar">
+                <div class="progress"></div>
+              </div>
+              <h5>10mo/s</h5>
+            </div>
+
+            <div class="dl_torrent_item">
+              <div class="dl_title_stat">
+                <h5>Oshi no Ko</h5>
+                <h5>10mmo/10go</h5>
+              </div>
+              <div class="progress_bar">
+                <div class="progress"></div>
+              </div>
+              <h5>10mo/s</h5>
+            </div>
+
+            <div class="dl_torrent_item">
+              <div class="dl_title_stat">
+                <h5>Oshi no Ko</h5>
+                <h5>10mmo/10go</h5>
+              </div>
+              <div class="progress_bar">
+                <div class="progress"></div>
+              </div>
+              <h5>10mo/s</h5>
+            </div>
+
+            <div class="dl_torrent_item">
+              <div class="dl_title_stat">
+                <h5>Oshi no Ko</h5>
+                <h5>10mmo/10go</h5>
+              </div>
+              <div class="progress_bar">
+                <div class="progress"></div>
+              </div>
+              <h5>10mo/s</h5>
+            </div>
+
+            <div class="dl_torrent_item">
+              <div class="dl_title_stat">
+                <h5>Oshi no Ko</h5>
+                <h5>10mmo/10go</h5>
+              </div>
+              <div class="progress_bar">
+                <div class="progress"></div>
+              </div>
+              <h5>10mo/s</h5>
+            </div>
+
+
+          </div>
+
+
+        </div>
+        <div class="right_server_errors">
+            <div class="box_title">
+              <h3>Server Errors</h3>
+            </div>
+            <div class="errors display">
+              ERRROR FINFIND EP
+            </div>
+          </div>
       </div>
     </div>
 
@@ -392,11 +532,103 @@
 </div>
 
 <script >
+  const API_URL = "http://127.0.0.1:5000"
+
   const search = document.getElementById("search")
 
+  const anime_progress = document.getElementById("disk_progress_anime")
+  const anime_pross_text = document.getElementById("fill_stat_anime")
+
+  const show_progress = document.getElementById("disk_progress_show")
+  const show_pross_text = document.getElementById("fill_stat_show")
+
+  const movie_progress = document.getElementById("disk_progress_movie")
+  const movie_pross_text = document.getElementById("fill_stat_movie")
+
+  //repartion
+  const nb_anime = document.getElementById("disk_progress_stat_anime")
+  const nb_show = document.getElementById("disk_progress_stat_show")
+  const nb_movie = document.getElementById("disk_progress_stat_movie")
   const radioButtons = document.querySelectorAll('input[name="choice"]');
   const add_file = document.getElementById('file_box');
   const add_url = document.getElementById('url_box')
+
+  //cpu_temp
+  const current_temp = document.getElementById("cpu_temp_current")
+  const avg_cpu_temp = document.getElementById("cpu_temp_avg")
+
+  function convertToGigabytes(number) {
+      let gigabytes = Math.floor(number / Math.pow(1024, 3));
+      return gigabytes;
+    }
+
+    async function update_rep() {
+      try {
+        const nb_anime_response = await fetch(`${API_URL}/anime/nb`);
+        const nb_ani = await nb_anime_response.json();
+        const nb_movie_repsonse = await fetch(`${API_URL}/movie/nb`);
+        const nb_mov = await nb_movie_repsonse.json();
+        const nb_show_respsonse = await fetch(`${API_URL}/show/nb`);
+        const nb_sh = await nb_show_respsonse.json();
+
+        let tot = nb_ani["value"]+nb_mov["value"]+nb_sh["value"]
+        nb_anime.style.width = (nb_ani["value"]/tot)*100 + "%"
+        nb_show.style.width = (nb_sh["value"]/tot)*100 + "%"
+        nb_movie.style.width = (nb_mov["value"]/tot)*100 + "%"
+      } catch (error) {
+        console.error(error);
+  }
+}
+
+  fetch(`${API_URL}/anime/size`)
+          .then(response => response.json())
+          .then(response => {
+            anime_progress.style.width = (response["used"]/response["free"])*100 + "%";
+            anime_pross_text.innerHTML = convertToGigabytes(response["used"])+"Go/"+convertToGigabytes(response["free"]+response["used"])+"Go";
+          })
+  fetch(`${API_URL}/show/size`)
+          .then(response => response.json())
+          .then(response => {
+            show_progress.style.width = (response["used"]/response["free"])*100 + "%";
+            show_pross_text.innerHTML = convertToGigabytes(response["used"])+"Go/"+convertToGigabytes(response["free"]+response["used"])+"Go";
+          })
+  fetch(`${API_URL}/movie/size`)
+          .then(response => response.json())
+          .then(response => {
+            movie_progress.style.width = (response["used"]/response["free"])*100 + "%";
+            movie_pross_text.innerHTML = convertToGigabytes(response["used"])+"Go/"+convertToGigabytes(response["free"]+response["used"])+"Go";
+          })
+  fetch(`${API_URL}/cpu_temp/current`)
+          .then(response => response.json())
+          .then(response => {
+            if (response["value"] > 50) {
+              current_temp.style.color = "red";
+            }
+            if (response["value"] > 40) {
+              current_temp.style.color = "orange"
+            }
+            else {
+              current_temp.style.color = "green"
+            }
+            current_temp.innerHTML = response["value"] + "°c"
+          })
+  fetch(`${API_URL}/cpu_temp/avg`)
+          .then(response => response.json())
+          .then(response => {
+            if (response["value"] > 50) {
+              avg_cpu_temp.style.color = "red";
+            }
+            if (response["value"] > 40) {
+              avg_cpu_temp.style.color = "orange"
+            }
+            else {
+              avg_cpu_temp.style.color = "green"
+            }
+            avg_cpu_temp.innerHTML = response["value"] + "°c"
+          })
+  update_rep()
+
+
 
   radioButtons.forEach(function(radioButton) {
     radioButton.addEventListener('change', function() {
