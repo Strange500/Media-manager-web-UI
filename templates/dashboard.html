@@ -162,13 +162,14 @@
                       </ul>
                     </div>
 
-                  <input type="hidden" name="id" value="00000000">
+                  <input type="hidden" name="id" value="0" id="id_req">
+                  {{ error_message }}
                   <div class="search_box">
                     <input type="search" name="search" id="search">
                     <input type="submit" value="Send request">
                     <div class="results_search close" id="result_search">
                       <div class="list_reseach">
-                        <ul class="results">
+                        <ul class="results" id="search_result_target">
                         <li>
                           <img src="../static/Default_poster.jpg" alt="poster">
                           <h5>Oshi no Ko</h5>
@@ -185,7 +186,6 @@
 
 
                   </div>
-
                   </div>
 
                   </div>
@@ -202,11 +202,11 @@
                       <ul class="quick_list_choose">
 
                         <li>
-                          <input type="radio" name="choice" id="choice_file" value="choice_file" checked>
+                          <input type="radio" name="choice_add" id="choice_file" value="choice_file" checked>
                           <label for="choice_file">Torrent file</label>
                         </li>
                         <li>
-                          <input type="radio" name="choice" id="choice_url" value="choice_url">
+                          <input type="radio" name="choice_add" id="choice_url" value="choice_url">
                           <label for="choice_url"> Add by URL</label>
                         </li>
                       </ul>
@@ -533,6 +533,7 @@
 
 <script >
   const API_URL = "http://127.0.0.1:5000"
+  const TMDB_URL = "https://image.tmdb.org/t/p/w500"
 
   const search = document.getElementById("search")
 
@@ -549,13 +550,61 @@
   const nb_anime = document.getElementById("disk_progress_stat_anime")
   const nb_show = document.getElementById("disk_progress_stat_show")
   const nb_movie = document.getElementById("disk_progress_stat_movie")
-  const radioButtons = document.querySelectorAll('input[name="choice"]');
   const add_file = document.getElementById('file_box');
   const add_url = document.getElementById('url_box')
 
   //cpu_temp
   const current_temp = document.getElementById("cpu_temp_current")
   const avg_cpu_temp = document.getElementById("cpu_temp_avg")
+
+  //quick request
+  const query = document.getElementById("search")
+  const radioButtons = document.querySelectorAll('input[name="choice"]');
+  let searchTimerId;
+  const result_box = document.getElementById("search_result_target")
+
+  function update_search() {
+    let formData = new FormData();
+    formData.append('choice', getCheckedRadioButtonValue());
+    formData.append('search', search.value);
+    console.log("formData")
+    fetch(`${API_URL}/tmdb/search`, {
+      method: 'POST',
+      body: formData
+    })
+            .then(response => response.json())
+            .then(data => {
+              console.log(data); // Process the response data
+            })
+            .catch(error => {
+              console.error(error);
+            });
+  }
+  function getCheckedRadioButtonValue() {
+
+    let checkedValue = null;
+
+    radioButtons.forEach(radioButton => {
+      if (radioButton.checked) {
+        checkedValue = radioButton.value;
+      }
+    });
+
+  return checkedValue;
+}
+  function update_search() {
+    let s = query.value
+    let typeof_choice = getCheckedRadioButtonValue()
+    if (typeof_choice === "anime"){
+      return
+    }
+    if (typeof_choice ==="movie") {
+        return
+    }
+    if (typeof_choice === "show") {
+      return
+    }
+    }
 
   function convertToGigabytes(number) {
       let gigabytes = Math.floor(number / Math.pow(1024, 3));
@@ -656,11 +705,86 @@
     div.classList.remove('close')
     div.classList.add('open')
   })
-  search.addEventListener("focusout", function (event) {
-    let div = document.getElementById("result_search")
-    div.classList.remove('open')
-    div.classList.add('close')
-  })
+  //search.addEventListener("focusout", function (event) {
+
+  //})
+
+
+
+  search.addEventListener('input', function(event) {
+    clearTimeout(searchTimerId);
+
+    searchTimerId = setTimeout(function() {
+      const searchText = event.target.value;
+      let formData = new FormData();
+      formData.append('choice', getCheckedRadioButtonValue());
+      formData.append('search', search.value);
+      console.log("formData")
+      fetch(`${API_URL}/tmdb/search`, {
+        method: 'POST',
+        body: formData
+      })
+              .then(response => response.json())
+              .then(data => {
+                console.log(data);
+                result_box.innerHTML = "";
+                for (let key in data["results"]) {
+
+                  let cel = document.createElement('li');
+                  let poster = document.createElement('img');
+                  poster.src = TMDB_URL + data["results"][key]["poster_path"];
+                  poster.alt = "poster";
+                  let title = document.createElement("h5");
+
+                  if (getCheckedRadioButtonValue() === "anime" || getCheckedRadioButtonValue() === "show") {
+                    const t = "name";
+                    title.textContent = data["results"][key][t];
+                    cel.setAttribute("title",data["results"][key][t] ) ;
+                    poster.setAttribute("title",data["results"][key][t] ) ;
+                    title.setAttribute("title",data["results"][key][t] ) ;
+                  }
+                  else {
+                    const t = 'title';
+                    title.textContent = data["results"][key][t];
+                    cel.setAttribute("title",data["results"][key][t] ) ;
+                    poster.setAttribute("title",data["results"][key][t] ) ;
+                    title.setAttribute("title",data["results"][key][t] ) ;
+                  }
+                  cel.setAttribute("data",data["results"][key]["id"] ) ;
+                  poster.setAttribute("data",data["results"][key]["id"] ) ;
+                  title.setAttribute("data",data["results"][key]["id"] ) ;
+
+
+
+                  cel.appendChild(poster)
+                  cel.appendChild(title)
+
+
+                  cel.addEventListener("click", function (event) {
+                    let inp = document.getElementById("id_req")
+                    console.log(event.target)
+                    console.log(event.target.getAttribute("data"))
+                    inp.value = event.target.getAttribute("data")
+                    query.value ="";
+                    query.setAttribute("placeholder", "Selected : "+ event.target.getAttribute("title"))
+                    let div = document.getElementById("result_search")
+                    div.classList.remove('open')
+                    div.classList.add('close')
+                  });
+                  result_box.appendChild(cel)
+
+                } // Process the response data
+              })
+              .catch(error => {
+                console.error(error);
+              });
+      console.log(searchText);
+    }, 500); // Cooldown period in milliseconds
+});
+
+
+
+
 
 </script>
 </body>

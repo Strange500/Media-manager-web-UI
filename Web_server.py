@@ -1,8 +1,8 @@
 from flask import Flask, jsonify, redirect, request, render_template
-
+from requests import request as rq
 
 app = Flask(__name__)
-
+API_URL = "http://127.0.0.1:5000"
 @app.route("/")
 def home():
     return redirect("/login")
@@ -25,9 +25,22 @@ def login():
     else:
         return render_template('login.html')
 
-@app.route("/dashboard")
+@app.route("/dashboard", methods=["GET", "POST"])
 def dashboard():
-    return render_template("dashboard.html")
+    if request.method == 'GET':
+        return render_template("dashboard.html")
+    elif request.method == 'POST':
+        data={'id' : request.form.get('id'), "choice":request.form.get("choice")}
+        response = rq(url=API_URL+"/request/show", data=data, method="POST")
+        print(response.status_code)
+        if response.status_code != 200:
+            error_message = "An error occured"
+            return render_template("dashboard.html", error_message="An error occured")
+        else:
+            error_message = ""
+            return render_template("dashboard.html")
+
+
 
 
 if __name__ == "__main__":
