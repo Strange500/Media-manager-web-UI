@@ -1,0 +1,62 @@
+
+
+.main_page {
+    height: 95%;
+    background: #1f1e1e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login_box {
+    border: 0.2vh solid #c708c7 ;
+    border-radius: 1vh;
+    height: 50%;
+    width: 40%;
+    display: inline-block;
+    background: #131212;
+    justify-content: center;
+    text-align: center;
+}
+.logo_login {
+    margin-top: 1vh;
+    width: 80%;
+}
+.login_form {
+    margin-top: 20%;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+}
+
+.login_input_box {
+    font-size: 100%;
+    text-align: left;
+    margin-bottom: 10%;
+}
+.login_txt_input {
+    color: #c708c7;
+    background: #1f1e1e;
+    border: 0.1vh solid #c708c7;
+    font-size: 200%;
+}
+.login_txt_input:focus {
+    transition: 1s;
+    background: #c708c7;
+    border: 0.1vh solid #1f1e1e;
+    color : black;
+}
+
+.login_submit {
+    font-size: 150%;
+    margin-top: 10%;
+    height: 3vh;
+    width: 80%;
+    background: #1f1e1e;
+    border: 0.1vh solid #c708c7;
+}
+.login_submit:hover {
+    transition: .5s;
+    font-size: 155%;
+    background: #131212;
+}

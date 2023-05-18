@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <link rel="stylesheet" href="../static/header.css">
+  <link rel="stylesheet" href="../static/style.css">
+  <link rel="stylesheet" href="../static/dashboard.css">
+  <link rel="stylesheet" href="../static/menue.css">
+  <meta charset="UTF-8">
+  <title>Login</title>
+</head>
+<body>
+
+<div id="main_box" class="main_box">
+  <div id="header" class="header">
+    Dashboard
+  </div>
+  <div id="main_page" class="main_page">
+    <div id="menu_box" class="menu_box">
+      <ul class="menu">
+        <a href="#" class="menu_item">
+          <li class="menu-sub-item">
+            Home
+          </li>
+        </a>
+        <a href="#" class="menu_item">
+          <li class="menu-sub-item">
+            Add file
+          </li>
+        </a>
+        <a href="#" class="menu_item">
+          <li class="menu-sub-item">
+            stat
+          </li>
+        </a>
+      </ul>
+    </div>
+    <div id="dashboard_box" class="dashboard_box">
+
+      <div class="dashboard_left_box">
+        <div class="disk_usage_box" id="disk_usage_box">
+          <div class="box_title">
+              <h3>Disk Usage</h3>
+          </div>
+          <div class="disk_display_box" id="disk_display_box">
+
+            <div class="disk_box">
+              <div class="disk_title">
+                Anime :
+                <div class="disk_fill_stat" id="fill_stat_anime">
+                  10mo/10To
+                </div>
+              </div>
+              <div class="progress_bar" id="disk_bar_anime">
+                <div class="progress" id="disk_progress_anime">
+
+                </div>
+              </div>
+            </div>
+
+            <div class="disk_box">
+              <div class="disk_title">
+                Show :
+                <div class="disk_fill_stat" id="fill_stat_show">
+                  10mo/10To
+                </div>
+              </div>
+              <div class="progress_bar" id="disk_bar_show">
+                <div class="progress" id="disk_progress_show">
+
+                </div>
+              </div>
+            </div>
+
+            <div class="disk_box">
+              <div class="disk_title">
+                Movie :
+                <div class="disk_fill_stat" id="fill_stat_movie">
+                  10mo/10To
+                </div>
+              </div>
+              <div class="progress_bar" id="disk_bar_movie">
+                <div class="progress" id="disk_progress_movie">
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="disk_stat_anishowmov">
+            <h5>Répartition : </h5>
+            <div class="progress_bar" id="disk_bar_stat">
+
+                <div class="progress" id="disk_progress_stat_anime">
+
+                </div>
+              <div class="progress" id="disk_progress_stat_show">
+
+                </div>
+              <div class="progress" id="disk_progress_stat_movie">
+
+                </div>
+              </div>
+            <ul id="disk_repartion_list">
+              <li class="disk_repartion_item" id="disk_repartion_anime">
+                Anime
+              </li>
+              <li  class="disk_repartion_item" id="disk_repartion_show">
+                Show
+              </li>
+              <li  class="disk_repartion_item" id="disk_repartion_movie">
+                Movie
+              </li>
+
+            </ul>
+          </div>
+        </div>
+
+        <div class="cpu_temp_box" id="cpu_temp_box">
+          <div class="box_title">
+            cpu temp
+          </div>
+          <div class="cpu_temp_display_box">
+            <h4 class="temp_designation">Current :</h4>
+            <div class="cpu_temp" id="cpu_temp_current">
+              33deg
+            </div>
+            <h4 class="temp_designation">Average :</h4>
+            <div class="cpu_temp" id="cpu_temp_avg">
+              36deg
+            </div>
+          </div>
+          <div class="cpu_temp_current">
+            <div></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="dashboard_center_box">
+
+        <div class="center_sub_box" id="center_sub_box">
+            <div class="quick_request_box">
+              <div class="box_title">
+                quick Request
+              </div>
+              <div class="quick_request_display">
+                <form action="/dashboard" method="post">
+                    <div class="quick_request_choose">
+                      <ul class="quick_list_choose">
+                        <li>
+                          <input type="radio" name="choice" id="choice_anime" value="anime" checked>
+                          <label for="choice_anime">Anime</label>
+                        </li>
+                        <li>
+                          <input type="radio" name="choice" id="choice_show" value="show">
+                          <label for="choice_show">Show</label>
+                        </li>
+                        <li>
+                          <input type="radio" name="choice" id="choice_movie" value="movie">
+                          <label for="choice_movie">Movie</label>
+                        </li>
+                      </ul>
+                    </div>
+
+                  <input type="hidden" name="id" value="0" id="id_req">
+                  {{ error_message }}
+                  <div class="search_box">
+                    <input type="search" name="search" id="search">
+                    <input type="submit" value="Send request">
+                    <div class="results_search close" id="result_search">
+                      <div class="list_reseach">
+                        <ul class="results" id="search_result_target">
+                        Nothing here
+                      </ul>
+
+
+                  </div>
+                  </div>
+
+                  </div>
+                  </form>
+              </div>
+
+            </div>
+          <div class="add_torrent_box">
+              <div class="box_title">
+                Add Torrent
+              </div>
+            <form action="/dashboard" method="post">
+              <div class="add_torrent_choose">
+                      <ul class="quick_list_choose">
+
+                        <li>
+                          <input type="radio" name="choice_add" id="choice_file" value="choice_file" checked>
+                          <label for="choice_file">Torrent file</label>
+                        </li>
+                        <li>
+                          <input type="radio" name="choice_add" id="choice_url" value="choice_url">
+                          <label for="choice_url"> Add by URL</label>
+                        </li>
+                      </ul>
+                    </div>
+                <div class="add_torrent">
+                  <div class="file_box open" id="file_box">
+                    <input type="file" name="file" id="file">
+                    <input type="submit" value="Send torrent">
+                  </div>
+                  <div class="url_box close" id="url_box">
+                    <label for="url">Enter url :</label>
+                    <input type="url" name="file" id="url" placeholder="Enter torrent URL ...">
+                    <input type="submit" value="Send torrent">
+                  </div>
+                </div>
+            </form>
+
+
+          </div>
+        </div>
+
+        <div class="center_main_box" id="center_main_box">
+            <div class="main_upper_box" id="main_upper_box">
+              <div class="main_log_box">
+                  <div class="box_title">
+                    Logs
+                  </div>
+                <div class="div_scroll_bar" id="log_box">
+                  <ul class="list_log" id="list_log">
+                    <li><a href="#">2022-03-15.log</a> </li>
+                    <li><a href="#">2022-03-15.log</a> </li>
+                    <li><a href="#">2022-03-15.log</a> </li>
+                    <li><a href="#">2022-03-15.log</a> </li>
+                    <li><a href="#">2022-03-15.log</a> </li>
+                    <li><a href="#">2022-03-15.log</a> </li>
+                    <li><a href="#">2022-03-15.log</a> </li>
+                    <li><a href="#">2022-03-15.log</a> </li>
+                    <li><a href="#">2022-03-15.log</a> </li>
+                    <li><a href="#">2022-03-15.log</a> </li>
+                    <li><a href="#">2022-03-15.log</a> </li>
+                    <li><a href="#">2022-03-15.log</a> </li>
+                    <li><a href="#">2022-03-15.log</a> </li>
+                    <li><a href="#">2022-03-15.log</a> </li>
+                    <li><a href="#">2022-03-15.log</a> </li>
+                    <li><a href="#">2022-03-15.log</a> </li>
+                    <li><a href="#">2022-03-15.log</a> </li>
+                    <li><a href="#">2022-03-15.log</a> </li>
+                    <li><a href="#">2022-03-15.log</a> </li>
+                    <li><a href="#">2022-03-15.log</a> </li>
+                    <li><a href="#">2022-03-15.log</a> </li>
+                    <li><a href="#">2022-03-15.log</a> </li>
+                    <li><a href="#">2022-03-15.log</a> </li>
+                    <li><a href="#">2022-03-15.log</a> </li>
+                    <li><a href="#">2022-03-15.log</a> </li>
+                    <li><a href="#">2022-03-15.log</a> </li>
+                    <li><a href="#">2022-03-15.log</a> </li>
+
+                  </ul>
+                </div>
+              </div>
+              <div class="main_schedule_box" id="main_schedule_box">
+                  <div class="box_title">
+                    Schedule
+                  </div>
+                <div class="schedule_box div_scroll_bar">
+
+                  <div class="schedule_item_default">
+                    <img src="../static/Default_poster.jpg" class="schedule_poster" alt="poster" >
+
+                    <div class="schedule_desc">
+                      <div class="schedule_title_type">
+                          <h4 class="schedule_title">Oshi no Ko</h4>
+                          <h5 class="schedule_type">Type : Anime</h5>
+                      </div>
+                      <h5 class="schedule_genre">Genre : Horror, slice of life</h5>
+                      <h5 class="schedule_release_date">Relaese on : 2022-03-15</h5>
+                    </div>
+                  </div>
+
+                  <div class="schedule_item_default">
+                    <img src="../static/Default_poster.jpg" class="schedule_poster" alt="poster">
+
+                    <div class="schedule_desc">
+                      <div class="schedule_title_type">
+                          <h4 class="schedule_title">Oshi no Ko</h4>
+                          <h5 class="schedule_type">Type : Anime</h5>
+                      </div>
+                      <h5 class="schedule_genre">Genre : Horror, slice of life</h5>
+                      <h5 class="schedule_release_date">Relaese on : 2022-03-15</h5>
+                    </div>
+                  </div>
+
+                  <div class="schedule_item_default">
+                    <img src="../static/Default_poster.jpg" class="schedule_poster" alt="poster">
+
+                    <div class="schedule_desc">
+                      <div class="schedule_title_type">
+                          <h4 class="schedule_title">Oshi no Ko</h4>
+                          <h5 class="schedule_type">Type : Anime</h5>
+                      </div>
+                      <h5 class="schedule_genre">Genre : Horror, slice of life</h5>
+                      <h5 class="schedule_release_date">Relaese on : 2022-03-15</h5>
+                    </div>
+                  </div>
+
+                  <div class="schedule_item_default">
+                    <img src="../static/Default_poster.jpg" class="schedule_poster" alt="poster">
+                    <div class="schedule_desc">
+                      <div class="schedule_title_type">
+                          <h4 class="schedule_title">Oshi no Ko</h4>
+                          <h5 class="schedule_type">Type : Anime</h5>
+                      </div>
+                      <h5 class="schedule_release_date">Relaese on : 2022-03-15</h5>
+                      <h5 class="schedule_genre">Horror, slice of life</h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="main_services_box" id="main_services_box">
+
+                  <div class="box_title">
+                      Services
+                    </div>
+
+                <div class="services_box">
+
+                  <div class="service">
+                    <img src="../static/link_logo_default.jpg" class="service_logo">
+
+                    <div class="service_desc">jellyfin (Netflix-like)</div>
+                  </div>
+
+                  <div class="service">
+                    <img src="../static/link_logo_default.jpg" class="service_logo">
+                    <div class="service_desc">Video-converter (based on Handbrake)</div>
+                  </div>
+
+                </div>
+
+                <div class="box_title" id="links_title">
+                      Links
+                    </div>
+                <div class="service">
+                    <img src="../static/link_logo_default.jpg" class="service_logo" alt="logo">
+                    <div class="service_desc">Video-converter (based on Handbrake)</div>
+                  </div>
+                <div class="service">
+                    <img src="../static/link_logo_default.jpg" class="service_logo" alt="logo">
+                  <div class="service_desc">
+                    <a href="#">Github</a>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          <div class="main_bottom_box">
+            <div class="main_bottom_stat_box">
+                <h5 class="nb" id="nb_show">Number of show : 450</h5>
+                <h5 class="nb" id="nb_anime">Number of Anime : 450</h5>
+                <h5 class="nb" id="nb_movie">Number of Movie : 450</h5>
+            </div>
+            <div class="main_bottom_graph_box">
+                <div class="chart" id="chart_show">
+                    <div class="sector" id="completed_show"></div>
+                    <div class="sector" id="uncompleted_show"></div>
+                </div>
+
+              <div class="chart" id="chart_Anime">
+                    <div class="sector" id="completed_anime"></div>
+                    <div class="sector" id="uncompleted_anime"></div>
+                </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="dashboard_right_box">
+
+        <div class="right_dl_box">
+          <div class="box_title">
+            <h3>Torrent</h3>
+          </div>
+          <div class="dl_torrent_box">
+
+            <div class="dl_torrent_item">
+              <div class="dl_title_stat">
+                <h5>Oshi no Ko</h5>
+                <h5>10mmo/10go</h5>
+              </div>
+              <div class="progress_bar">
+                <div class="progress"></div>
+              </div>
+              <h5>10mo/s</h5>
+            </div>
+
+            <div class="dl_torrent_item">
+              <div class="dl_title_stat">
+                <h5>Oshi no Ko</h5>
+                <h5>10mmo/10go</h5>
+              </div>
+              <div class="progress_bar">
+                <div class="progress"></div>
+              </div>
+              <h5>10mo/s</h5>
+            </div>
+
+            <div class="dl_torrent_item">
+              <div class="dl_title_stat">
+                <h5>Oshi no Ko</h5>
+                <h5>10mmo/10go</h5>
+              </div>
+              <div class="progress_bar">
+                <div class="progress"></div>
+              </div>
+              <h5>10mo/s</h5>
+            </div>
+
+            <div class="dl_torrent_item">
+              <div class="dl_title_stat">
+                <h5>Oshi no Ko</h5>
+                <h5>10mmo/10go</h5>
+              </div>
+              <div class="progress_bar">
+                <div class="progress"></div>
+              </div>
+              <h5>10mo/s</h5>
+            </div>
+
+            <div class="dl_torrent_item">
+              <div class="dl_title_stat">
+                <h5>Oshi no Ko</h5>
+                <h5>10mmo/10go</h5>
+              </div>
+              <div class="progress_bar">
+                <div class="progress"></div>
+              </div>
+              <h5>10mo/s</h5>
+            </div>
+
+            <div class="dl_torrent_item">
+              <div class="dl_title_stat">
+                <h5>Oshi no Ko</h5>
+                <h5>10mmo/10go</h5>
+              </div>
+              <div class="progress_bar">
+                <div class="progress"></div>
+              </div>
+              <h5>10mo/s</h5>
+            </div>
+
+            <div class="dl_torrent_item">
+              <div class="dl_title_stat">
+                <h5>Oshi no Ko</h5>
+                <h5>10mmo/10go</h5>
+              </div>
+              <div class="progress_bar">
+                <div class="progress"></div>
+              </div>
+              <h5>10mo/s</h5>
+            </div>
+
+            <div class="dl_torrent_item">
+              <div class="dl_title_stat">
+                <h5>Oshi no Ko</h5>
+                <h5>10mmo/10go</h5>
+              </div>
+              <div class="progress_bar">
+                <div class="progress"></div>
+              </div>
+              <h5>10mo/s</h5>
+            </div>
+
+            <div class="dl_torrent_item">
+              <div class="dl_title_stat">
+                <h5>Oshi no Ko</h5>
+                <h5>10mmo/10go</h5>
+              </div>
+              <div class="progress_bar">
+                <div class="progress"></div>
+              </div>
+              <h5>10mo/s</h5>
+            </div>
+
+            <div class="dl_torrent_item">
+              <div class="dl_title_stat">
+                <h5>Oshi no Ko</h5>
+                <h5>10mmo/10go</h5>
+              </div>
+              <div class="progress_bar">
+                <div class="progress"></div>
+              </div>
+              <h5>10mo/s</h5>
+            </div>
+
+            <div class="dl_torrent_item">
+              <div class="dl_title_stat">
+                <h5>Oshi no Ko</h5>
+                <h5>10mmo/10go</h5>
+              </div>
+              <div class="progress_bar">
+                <div class="progress"></div>
+              </div>
+              <h5>10mo/s</h5>
+            </div>
+
+
+          </div>
+
+
+        </div>
+        <div class="right_server_errors">
+            <div class="box_title">
+              <h3>Server Errors</h3>
+            </div>
+            <div class="errors display">
+              ERRROR FINFIND EP
+            </div>
+          </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script >
+  const API_URL = "http://127.0.0.1:5000"
+  const TMDB_URL = "https://image.tmdb.org/t/p/w500"
+
+  const search = document.getElementById("search")
+
+  const anime_progress = document.getElementById("disk_progress_anime")
+  const anime_pross_text = document.getElementById("fill_stat_anime")
+
+  const show_progress = document.getElementById("disk_progress_show")
+  const show_pross_text = document.getElementById("fill_stat_show")
+
+  const movie_progress = document.getElementById("disk_progress_movie")
+  const movie_pross_text = document.getElementById("fill_stat_movie")
+
+  //repartion
+  const nb_anime = document.getElementById("disk_progress_stat_anime")
+  const nb_show = document.getElementById("disk_progress_stat_show")
+  const nb_movie = document.getElementById("disk_progress_stat_movie")
+  const add_file = document.getElementById('file_box');
+  const add_url = document.getElementById('url_box')
+
+  //cpu_temp
+  const current_temp = document.getElementById("cpu_temp_current")
+  const avg_cpu_temp = document.getElementById("cpu_temp_avg")
+
+  //quick request
+  const query = document.getElementById("search")
+  const radioButtons = document.querySelectorAll('input[name="choice"]');
+  let searchTimerId;
+  const result_box = document.getElementById("search_result_target")
+//add torrent
+  const radioButtons_torrent = document.querySelectorAll('input[name="choice_add"]');
+  const file_box = document.getElementById("file_box");
+  const url_box = document.getElementById("url_box");
+
+
+  function getCheckedRadioButtonValue() {
+
+    let checkedValue = null;
+
+    radioButtons.forEach(radioButton => {
+      if (radioButton.checked) {
+        checkedValue = radioButton.value;
+      }
+    });
+
+  return checkedValue;
+}
+  function update_add_tor_display_torrent() {
+
+      let checkedValue = null;
+
+      radioButtons.forEach(radioButton => {
+        if (radioButton.checked) {
+          checkedValue = radioButton.value;
+
+        }
+        if (checkedValue === "choice_file") {
+            let div = document.getElementById("file_box");
+            let o_div = document.getElementById("url_box")
+            div.classList.remove("close")
+            div.classList.add("open")
+            o_div.classList.remove("open")
+            o_div.classList.add("close")
+          }
+          else {
+            let div = document.getElementById("file_box");
+            let o_div = document.getElementById("url_box")
+            o_div.classList.remove("close")
+            o_div.classList.add("open")
+            div.classList.remove("open")
+            div.classList.add("close")
+          }
+      });
+
+    return checkedValue;
+  }
+
+  document.getElementById("choice_file").addEventListener('click', function() {
+    if (this.value === 'choice_file') {
+      file_box.classList.remove('close');
+      file_box.classList.add('open');
+      url_box.classList.remove('open');
+      url_box.classList.add('close');
+    }
+});
+
+document.getElementById("choice_url").addEventListener('click', function() {
+  if (this.value === 'choice_url') {
+    file_box.classList.remove('open');
+    file_box.classList.add('close');
+    url_box.classList.remove('close');
+    url_box.classList.add('open');
+  }
+});
+  function update_search() {
+    let s = query.value
+    let typeof_choice = getCheckedRadioButtonValue()
+    if (typeof_choice === "anime"){
+      return
+    }
+    if (typeof_choice ==="movie") {
+        return
+    }
+    if (typeof_choice === "show") {
+      return
+    }
+    }
+
+  function convertToGigabytes(number) {
+      let gigabytes = Math.floor(number / Math.pow(1024, 3));
+      return gigabytes;
+    }
+
+    async function update_rep() {
+      try {
+        const nb_anime_response = await fetch(`${API_URL}/anime/nb`);
+        const nb_ani = await nb_anime_response.json();
+        const nb_movie_repsonse = await fetch(`${API_URL}/movie/nb`);
+        const nb_mov = await nb_movie_repsonse.json();
+        const nb_show_respsonse = await fetch(`${API_URL}/show/nb`);
+        const nb_sh = await nb_show_respsonse.json();
+
+        let tot = nb_ani["value"]+nb_mov["value"]+nb_sh["value"]
+        nb_anime.style.width = (nb_ani["value"]/tot)*100 + "%"
+        nb_show.style.width = (nb_sh["value"]/tot)*100 + "%"
+        nb_movie.style.width = (nb_mov["value"]/tot)*100 + "%"
+      } catch (error) {
+        console.error(error);
+  }
+}
+
+  fetch(`${API_URL}/anime/size`)
+          .then(response => response.json())
+          .then(response => {
+            anime_progress.style.width = (response["used"]/response["free"])*100 + "%";
+            anime_pross_text.innerHTML = convertToGigabytes(response["used"])+"Go/"+convertToGigabytes(response["free"]+response["used"])+"Go";
+          })
+  fetch(`${API_URL}/show/size`)
+          .then(response => response.json())
+          .then(response => {
+            show_progress.style.width = (response["used"]/response["free"])*100 + "%";
+            show_pross_text.innerHTML = convertToGigabytes(response["used"])+"Go/"+convertToGigabytes(response["free"]+response["used"])+"Go";
+          })
+  fetch(`${API_URL}/movie/size`)
+          .then(response => response.json())
+          .then(response => {
+            movie_progress.style.width = (response["used"]/response["free"])*100 + "%";
+            movie_pross_text.innerHTML = convertToGigabytes(response["used"])+"Go/"+convertToGigabytes(response["free"]+response["used"])+"Go";
+          })
+  fetch(`${API_URL}/cpu_temp/current`)
+          .then(response => response.json())
+          .then(response => {
+            if (response["value"] > 50) {
+              current_temp.style.color = "red";
+            }
+            if (response["value"] > 40) {
+              current_temp.style.color = "orange"
+            }
+            else {
+              current_temp.style.color = "green"
+            }
+            current_temp.innerHTML = response["value"] + "°c"
+          })
+  fetch(`${API_URL}/cpu_temp/avg`)
+          .then(response => response.json())
+          .then(response => {
+            if (response["value"] > 50) {
+              avg_cpu_temp.style.color = "red";
+            }
+            if (response["value"] > 40) {
+              avg_cpu_temp.style.color = "orange"
+            }
+            else {
+              avg_cpu_temp.style.color = "green"
+            }
+            avg_cpu_temp.innerHTML = response["value"] + "°c"
+          })
+  update_rep()
+
+
+
+  radioButtons.forEach(function(radioButton) {
+    radioButton.addEventListener('change', function() {
+      if (radioButton.checked) {
+        const selectedValue = radioButton.value;
+        if (selectedValue === "choice_url") {
+          add_url.classList.add("open")
+          add_url.classList.remove('close')
+          add_file.classList.add("close")
+          add_file.classList.remove('open')
+
+        }
+        if (selectedValue === "choice_file") {
+          add_file.classList.add("open")
+          add_file.classList.remove('close')
+          add_url.classList.add("close")
+          add_url.classList.remove('open')
+        }
+      }
+    });
+  });
+
+  search.addEventListener("focus", function (event) {
+    let div = document.getElementById("result_search")
+    div.classList.remove('close')
+    div.classList.add('open')
+  })
+
+
+
+
+  search.addEventListener('input', function(event) {
+    clearTimeout(searchTimerId);
+
+    searchTimerId = setTimeout(function() {
+      const searchText = event.target.value;
+      if (searchText === "") {
+        let div = document.getElementById("result_search")
+      div.classList.add('close')
+      div.classList.remove('open')
+      }
+      else {
+      let formData = new FormData();
+      formData.append('choice', getCheckedRadioButtonValue());
+      formData.append('search', search.value);
+      console.log("formData")
+      fetch(`${API_URL}/tmdb/search`, {
+        method: 'POST',
+        body: formData
+      })
+              .then(response => response.json())
+              .then(data => {
+                console.log(data);
+                result_box.innerHTML = "";
+                for (let key in data["results"]) {
+
+                  let cel = document.createElement('li');
+                  let poster = document.createElement('img');
+                  poster.src = TMDB_URL + data["results"][key]["poster_path"];
+                  poster.alt = "poster";
+                  let title = document.createElement("h5");
+
+                  if (getCheckedRadioButtonValue() === "anime" || getCheckedRadioButtonValue() === "show") {
+                    const t = "name";
+                    title.textContent = data["results"][key][t];
+                    cel.setAttribute("title",data["results"][key][t] ) ;
+                    poster.setAttribute("title",data["results"][key][t] ) ;
+                    title.setAttribute("title",data["results"][key][t] ) ;
+                  }
+                  else {
+                    const t = 'title';
+                    title.textContent = data["results"][key][t];
+                    cel.setAttribute("title",data["results"][key][t] ) ;
+                    poster.setAttribute("title",data["results"][key][t] ) ;
+                    title.setAttribute("title",data["results"][key][t] ) ;
+                  }
+                  cel.setAttribute("data",data["results"][key]["id"] ) ;
+                  poster.setAttribute("data",data["results"][key]["id"] ) ;
+                  title.setAttribute("data",data["results"][key]["id"] ) ;
+                  cel.appendChild(poster)
+                  cel.appendChild(title)
+
+                  cel.addEventListener("click", function (event) {
+                    let inp = document.getElementById("id_req")
+                    console.log(event.target)
+                    console.log(event.target.getAttribute("data"))
+                    inp.value = event.target.getAttribute("data")
+                    query.value ="";
+                    query.setAttribute("placeholder", "Selected : "+ event.target.getAttribute("title"))
+                    let div = document.getElementById("result_search")
+                    div.classList.remove('open')
+                    div.classList.add('close')
+                  });
+                  result_box.appendChild(cel)
+
+                }
+              })
+              .catch(error => {
+                console.error(error);
+              });
+      console.log(searchText);}
+    }, 500);
+});
+
+
+
+
+
+
+</script>
+</body>
+</html>

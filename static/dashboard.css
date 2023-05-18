@@ -1,0 +1,463 @@
+.main_page {
+    display: flex;
+    height: 100%;
+    background: #1f1e1e;
+}
+
+.dashboard_box {
+    display: flex;
+    width: 90%;
+}
+
+.dashboard_left_box {
+    width: 27.5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.dashboard_center_box {
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.dashboard_right_box {
+    width: 27.5%;
+}
+
+.disk_usage_box {
+    box-sizing: border-box;
+    background: #131212;
+    border: 0.1vh solid #c708c7;
+    border-radius: 1%;
+    width: 90%;
+    height: 50%;
+}
+
+.cpu_temp_box {
+    border: 0.1vh solid #c708c7;
+    border-radius: 1%;
+    margin: 3vh;
+    height: 30%;
+    width: 90%;
+    background: #131212;
+}
+
+.box_title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10%;
+    border-bottom: 0.1vh solid #c708c7;
+}
+
+.disk_display_box {
+    height: 75%;
+}
+
+.disk_box {
+    border-bottom: 0.1vh solid #c708c7;
+    display: flex;
+    flex-direction: column;
+    height: 33.3%;
+}
+
+.disk_stat_anishowmov {
+    height: 15%;
+}
+
+.disk_title {
+    font-weight: bold;
+    position: relative;
+    margin: .5vh;
+    margin-bottom: 3vh;
+}
+.disk_fill_stat {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.progress_bar {
+    border-radius: 3%;
+    border: .1vh solid white;
+    height: 20%;
+    margin-left: 1vh;
+    margin-right: 1vh;
+    background: cornsilk;
+}
+
+.progress {
+    height: 100%;
+    background: green;
+}
+
+#disk_bar_stat {
+    display: flex;
+}
+
+#disk_progress_stat_anime {
+    background: red;
+}
+
+#disk_progress_stat_movie {
+    background: green;
+}
+
+#disk_progress_stat_show {
+    background: yellow;
+}
+
+#disk_repartion_list {
+    margin-left: 3vh;
+    display: flex;
+}
+
+.disk_repartion_item {
+    margin-top: 1vh;
+    margin-left: 4vh;
+}
+#disk_repartion_list li:nth-child(1) {
+    color: red;
+}
+
+#disk_repartion_list li:nth-child(2) {
+    color: yellow;
+}
+
+#disk_repartion_list li:nth-child(3) {
+    color: green;
+}
+
+.cpu_temp_display_box {
+    height: 100%;
+    padding-left: 1vh;
+    padding-right: 1vh;
+}
+
+.temp_designation {
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+}
+
+.cpu_temp {
+    font-size: 200%;
+    background: #1f1e1e;
+    border: 0.1vh solid #c708c7;
+    height: 28%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.center_main_box {
+    background: #131212;
+    height: 60%;
+    width: 100%;
+    margin-top: 5vh;
+    border: 0.1vh solid #c708c7;
+    border-radius: 1%;
+}
+
+.main_upper_box {
+    display: flex;
+    width: 100%;
+    height: 75%;
+}
+
+.main_log_box {
+    width: 20%;
+    height: 100%;
+    box-sizing: border-box;
+    border-right: 0.1vh solid #c708c7;
+
+}
+
+.main_schedule_box {
+    width: 45%;
+    border-right: 0.1vh solid #c708c7;
+}
+
+.main_services_box {
+    width: 35%;
+}
+
+.main_bottom_graph_box {
+    height: 25%;
+}
+.div_scroll_bar {
+    overflow-y: scroll;
+}
+#log_box {
+        height: 90%;
+    padding: .5vh;
+    padding-bottom: 0;
+    padding-top: 0;
+
+}
+.list_log {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.list_log li {
+    height: 20%;
+}
+
+.schedule_box {
+    display: flex;
+    flex-direction: column;
+    height: 90%;
+}
+.schedule_item_default {
+    display: flex;
+    align-items: center;
+    margin: 1vh;
+    background: #1f1e1e;
+    border: 0.1vh solid #1f1e1e;
+    border-radius: 2%;
+    height: 30%;
+}
+
+.schedule_poster {
+    height: 90%;
+}
+
+.schedule_desc {
+    width: 100%;
+    display: block;
+
+}
+.schedule_desc h5 {
+    margin-top: 1vh;
+    margin-left: 1vh;
+}
+
+.schedule_title_type {
+    display: flex;
+    position: relative;
+    margin-left: 1vh;
+}
+.schedule_title_type .schedule_type {
+    display: flex;
+    position: absolute;
+    right: 0;
+}
+
+.services_box {
+    height: 45%;
+    display: flex;
+    flex-direction: column;
+}
+
+.service_logo {
+    width: 10%;
+    margin-right: 1vh;
+}
+
+.service {
+    margin: 1vh;
+    height: 10%;
+    align-items: center;
+    display: flex;
+}
+.main_bottom_box {
+    height: 25%;
+    display:flex;
+}
+
+#links_title {
+    border-top: 0.1vh solid #c708c7;
+}
+.main_bottom_stat_box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 40%;
+    border-right: 0.1vh solid #c708c7;
+    border-top: 0.1vh solid #c708c7;
+}
+.main_bottom_stat_box h5 {
+    margin-bottom: 1.5vh;
+}
+
+.main_bottom_graph_box {
+    height: 100%;
+    width: 60%;
+    display: flex;
+    align-items: center;
+    border-top: .1vh solid #c708c7;
+}
+
+.chart {
+  position: relative;
+  width: 36%;
+    height: 60%;
+    background: yellow;
+  border-radius: 50%;
+    margin-left: 2vh ;
+}
+
+.center_sub_box {
+    margin-top: -5vh;
+    background: #131212;
+    height: 20%;
+    width: 100%;
+    display: flex;
+    border: 0.1vh solid #c708c7;
+    border-radius: 1%;
+}
+
+.quick_request_box {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    border-right: 0.1vh solid #c708c7;
+    flex-direction: column;
+}
+.quick_request_choose {
+    background: #1f1e1e;
+    border: 0.1vh solid #c708c7;
+    border-radius: 3%;
+}
+.quick_request_display {
+    height: 100%;
+    max-height: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding-top: 1vh;
+    overflow-y: hidden;
+
+}
+.quick_list_choose {
+    display: flex;
+    list-style: none;
+}
+.quick_list_choose li {
+    margin-left: 1.5vh;
+}
+
+.search_box {
+    height: 100%;
+}
+.results_search {
+  width:100%; /* Adjust the desired width of the container */
+  height: 7.5%; /* Adjust the desired height of the container */
+  overflow-y: auto;
+    background: #1f1e1e;
+}
+
+.list_reseach {
+  /* Add your desired styles for the inner content */
+  /* For example: */
+  height: fit-content; /* Adjust the desired height of the inner content */
+  display: flex;
+  flex-direction: column;
+}
+
+.results {
+  list-style: none;
+}
+.results li{
+  margin: 1vh;
+  display :flex;
+  align-items: center;
+}
+
+.results li img {
+  height: 60px;
+}
+
+.results li h5 {
+    margin-left: 1vh;
+}
+
+
+#search {
+    margin: 1vh;
+    margin-left: 2vh;
+}
+.close {
+    visibility: hidden;
+    display: none;
+}
+.open {
+    visibility: visible;
+    display: flex;
+    flex-direction: column;
+}
+
+.add_torrent_box {
+    width: 50%;
+}
+
+.dashboard_right_box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.right_dl_box {
+    width: 90%;
+    height: 50%;
+    background: #131212;
+    border: 0.1vh solid #c708c7;
+    border-radius: 1%;
+
+}
+
+.dl_torrent_box {
+    height: 89.9%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.dl_torrent_item {
+    margin: 1vh;
+    background: #1f1e1e;
+    border-radius: 2%;
+    padding: .5vh;
+    padding-bottom: 1.5vh;
+    border: 0.1vh solid #c708c7;
+}
+
+.dl_torrent_item .progress_bar {
+    margin-top: 1vh;
+}
+
+
+.dl_title_stat{
+    display: flex;
+    border-bottom: 0.1vh solid #c708c7;
+    position: relative;
+}
+.dl_title_stat h5 {
+    margin: .5vh;
+}
+.dl_title_stat h5:nth-child(1) {
+    font-weight: bold;
+}
+.dl_title_stat h5:nth-child(2) {
+    position: absolute;
+    right: 0;
+}
+.right_server_errors {
+    margin: 3vh;
+    width: 90%;
+    height: 30%;
+    background: #131212;
+    border: .1vh solid #c708c7;
+    border-radius: 1%;
+}
+
+.ser
