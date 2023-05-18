@@ -18,7 +18,6 @@
 }
 .dashboard_center_box {
     width: 55%;
-    background: blue;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -160,55 +159,54 @@
 }
 
 .center_main_box {
-    background: green;
+    background: #131212;
     height: 60%;
     width: 100%;
-    margin-top: -7vh;
-}
-.center_sub_box {
     margin-top: 5vh;
-    background: crimson;
-    height: 20%;
-    width: 100%;
+    border: 0.1vh solid #c708c7;
+    border-radius: 1%;
 }
+
 .main_upper_box {
     display: flex;
     width: 100%;
-    background: darkcyan;
     height: 75%;
 }
 
 .main_log_box {
     width: 20%;
     height: 100%;
-    background: black;
     box-sizing: border-box;
+    border-right: 0.1vh solid #c708c7;
 
 }
 
 .main_schedule_box {
     width: 45%;
-    background: bisque;
+    border-right: 0.1vh solid #c708c7;
 }
 
 .main_services_box {
     width: 35%;
-    background: darkmagenta;
 }
 
 .main_bottom_graph_box {
     height: 25%;
 }
 .div_scroll_bar {
-    height: 90%;
     overflow-y: scroll;
+}
+#log_box {
+        height: 90%;
+    padding: .5vh;
+    padding-bottom: 0;
+    padding-top: 0;
+
 }
 .list_log {
     list-style: none;
-    background: chartreuse;
     display: flex;
     flex-direction: column;
-
 }
 
 .list_log li {
@@ -219,13 +217,14 @@
     display: flex;
     flex-direction: column;
     height: 90%;
-    background: darksalmon;
 }
 .schedule_item_default {
     display: flex;
     align-items: center;
     margin: 1vh;
-    background: aliceblue;
+    background: #1f1e1e;
+    border: 0.1vh solid #1f1e1e;
+    border-radius: 2%;
     height: 30%;
 }
 
@@ -256,7 +255,6 @@
 
 .services_box {
     height: 45%;
-    background: cornsilk;
     display: flex;
     flex-direction: column;
 }
@@ -271,11 +269,14 @@
     height: 10%;
     align-items: center;
     display: flex;
-    background: cyan;
 }
 .main_bottom_box {
     height: 25%;
     display:flex;
+}
+
+#links_title {
+    border-top: 0.1vh solid #c708c7;
 }
 .main_bottom_stat_box {
     display: flex;
@@ -284,7 +285,8 @@
     justify-content: center;
     height: 100%;
     width: 40%;
-    background: azure;
+    border-right: 0.1vh solid #c708c7;
+    border-top: 0.1vh solid #c708c7;
 }
 .main_bottom_stat_box h5 {
     margin-bottom: 1.5vh;
@@ -293,9 +295,9 @@
 .main_bottom_graph_box {
     height: 100%;
     width: 60%;
-    background: firebrick;
     display: flex;
     align-items: center;
+    border-top: .1vh solid #c708c7;
 }
 
 .chart {
@@ -305,4 +307,98 @@
     background: yellow;
   border-radius: 50%;
     margin-left: 2vh ;
+}
+
+.center_sub_box {
+    margin-top: -5vh;
+    background: #131212;
+    height: 20%;
+    width: 100%;
+    display: flex;
+    border: 0.1vh solid #c708c7;
+    border-radius: 1%;
+}
+
+.quick_request_box {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    border-right: 0.1vh solid #c708c7;
+    flex-direction: column;
+}
+.quick_request_choose {
+    background: #1f1e1e;
+    border: 0.1vh solid #c708c7;
+    border-radius: 3%;
+}
+.quick_request_display {
+    height: 100%;
+    max-height: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding-top: 1vh;
+    overflow-y: hidden;
+
+}
+.quick_list_choose {
+    display: flex;
+    list-style: none;
+}
+.quick_list_choose li {
+    margin-left: 1.5vh;
+}
+
+.search_box {
+    height: 100%;
+}
+.results_search {
+  width:100%; /* Adjust the desired width of the container */
+  height: 35%; /* Adjust the desired height of the container */
+  overflow-y: auto;
+}
+
+.list_reseach {
+  /* Add your desired styles for the inner content */
+  /* For example: */
+  height: fit-content; /* Adjust the desired height of the inner content */
+  display: flex;
+  z-index: 99;
+  flex-direction: column;
+}
+
+.results {
+  list-style: none;
+}
+.results li{
+  margin: 1vh;
+  display :flex;
+  align-items: center;
+}
+
+.results li img {
+  height: 60px;
+}
+
+.results li h5 {
+    margin-left: 1vh;
+}
+
+
+#search {
+    margin: 1vh;
+    margin-left: 2vh;
+}
+.close {
+    visibility: hidden;
+    display: none;
+}
+.open {
+    visibility: visible;
+    display: flex;
+    flex-direction: column;
+}
+
+.add_torrent_box {
+    width: 50%;
 }

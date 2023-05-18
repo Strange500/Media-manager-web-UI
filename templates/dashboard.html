@@ -137,6 +137,97 @@
       </div>
 
       <div class="dashboard_center_box">
+
+        <div class="center_sub_box" id="center_sub_box">
+            <div class="quick_request_box">
+              <div class="box_title">
+                quick Request
+              </div>
+              <div class="quick_request_display">
+                <form action="/dashboard" method="post">
+                    <div class="quick_request_choose">
+                      <ul class="quick_list_choose">
+                        <li>
+                          <input type="radio" name="choice" id="choice_anime" value="anime" checked>
+                          <label for="choice_anime">Anime</label>
+                        </li>
+                        <li>
+                          <input type="radio" name="choice" id="choice_show" value="show">
+                          <label for="choice_show">Show</label>
+                        </li>
+                        <li>
+                          <input type="radio" name="choice" id="choice_movie" value="movie">
+                          <label for="choice_movie">Movie</label>
+                        </li>
+                      </ul>
+                    </div>
+
+                  <input type="hidden" name="id" value="00000000">
+                  <div class="search_box">
+                    <input type="search" name="search" id="search">
+                    <input type="submit" value="Send request">
+                    <div class="results_search close" id="result_search">
+                      <div class="list_reseach">
+                        <ul class="results">
+                        <li>
+                          <img src="../static/Default_poster.jpg" alt="poster">
+                          <h5>Oshi no Ko</h5>
+                        </li>
+                        <li>
+                          <img src="../static/Default_poster.jpg" alt="poster">
+                          <h5>Oshi no Ko</h5>
+                        </li>
+                        <li>
+                          <img src="../static/Default_poster.jpg" alt="poster">
+                          <h5>Oshi no Ko</h5>
+                        </li>
+                      </ul>
+
+
+                  </div>
+
+                  </div>
+
+                  </div>
+                  </form>
+              </div>
+
+            </div>
+          <div class="add_torrent_box">
+              <div class="box_title">
+                Add Torrent
+              </div>
+            <form action="/dashboard" method="post">
+              <div class="add_torrent_choose">
+                      <ul class="quick_list_choose">
+
+                        <li>
+                          <input type="radio" name="choice" id="choice_file" value="choice_file" checked>
+                          <label for="choice_file">Torrent file</label>
+                        </li>
+                        <li>
+                          <input type="radio" name="choice" id="choice_url" value="choice_url">
+                          <label for="choice_url"> Add by URL</label>
+                        </li>
+                      </ul>
+                    </div>
+                <div class="add_torrent">
+                  <div class="file_box open" id="file_box">
+                    <input type="file" name="file" id="file">
+                    <input type="submit" value="Send torrent">
+                  </div>
+                  <div class="url_box close" id="url_box">
+                    <label for="url">Enter url :</label>
+                    <input type="url" name="file" id="url" placeholder="Enter torrent URL ...">
+                    <input type="submit" value="Send torrent">
+                  </div>
+                </div>
+            </form>
+
+
+          </div>
+        </div>
+
         <div class="center_main_box" id="center_main_box">
             <div class="main_upper_box" id="main_upper_box">
               <div class="main_log_box">
@@ -183,7 +274,7 @@
                 <div class="schedule_box div_scroll_bar">
 
                   <div class="schedule_item_default">
-                    <img src="../static/Default_poster.jpg" class="schedule_poster">
+                    <img src="../static/Default_poster.jpg" class="schedule_poster" alt="poster" >
 
                     <div class="schedule_desc">
                       <div class="schedule_title_type">
@@ -196,7 +287,7 @@
                   </div>
 
                   <div class="schedule_item_default">
-                    <img src="../static/Default_poster.jpg" class="schedule_poster">
+                    <img src="../static/Default_poster.jpg" class="schedule_poster" alt="poster">
 
                     <div class="schedule_desc">
                       <div class="schedule_title_type">
@@ -209,7 +300,7 @@
                   </div>
 
                   <div class="schedule_item_default">
-                    <img src="../static/Default_poster.jpg" class="schedule_poster">
+                    <img src="../static/Default_poster.jpg" class="schedule_poster" alt="poster">
 
                     <div class="schedule_desc">
                       <div class="schedule_title_type">
@@ -222,7 +313,7 @@
                   </div>
 
                   <div class="schedule_item_default">
-                    <img src="../static/Default_poster.jpg" class="schedule_poster">
+                    <img src="../static/Default_poster.jpg" class="schedule_poster" alt="poster">
                     <div class="schedule_desc">
                       <div class="schedule_title_type">
                           <h4 class="schedule_title">Oshi no Ko</h4>
@@ -259,15 +350,15 @@
                       Links
                     </div>
                 <div class="service">
-                    <img src="../static/link_logo_default.jpg" class="service_logo">
+                    <img src="../static/link_logo_default.jpg" class="service_logo" alt="logo">
                     <div class="service_desc">Video-converter (based on Handbrake)</div>
                   </div>
                 <div class="service">
-                    <img src="../static/link_logo_default.jpg" class="service_logo">
+                    <img src="../static/link_logo_default.jpg" class="service_logo" alt="logo">
                   <div class="service_desc">
                     <a href="#">Github</a>
                   </div>
-                  </div>
+                </div>
 
               </div>
             </div>
@@ -290,9 +381,7 @@
             </div>
           </div>
         </div>
-        <div class="center_sub_box" id="center_sub_box">
-            kkkkkk
-        </div>
+
       </div>
       <div class="dashboard_right_box">
         right
@@ -301,5 +390,46 @@
 
   </div>
 </div>
+
+<script >
+  const search = document.getElementById("search")
+
+  const radioButtons = document.querySelectorAll('input[name="choice"]');
+  const add_file = document.getElementById('file_box');
+  const add_url = document.getElementById('url_box')
+
+  radioButtons.forEach(function(radioButton) {
+    radioButton.addEventListener('change', function() {
+      if (radioButton.checked) {
+        const selectedValue = radioButton.value;
+        if (selectedValue === "choice_url") {
+          add_url.classList.add("open")
+          add_url.classList.remove('close')
+          add_file.classList.add("close")
+          add_file.classList.remove('open')
+
+        }
+        if (selectedValue === "choice_file") {
+          add_file.classList.add("open")
+          add_file.classList.remove('close')
+          add_url.classList.add("close")
+          add_url.classList.remove('open')
+        }
+      }
+    });
+  });
+
+  search.addEventListener("focus", function (event) {
+    let div = document.getElementById("result_search")
+    div.classList.remove('close')
+    div.classList.add('open')
+  })
+  search.addEventListener("focusout", function (event) {
+    let div = document.getElementById("result_search")
+    div.classList.remove('open')
+    div.classList.add('close')
+  })
+
+</script>
 </body>
 </html>
