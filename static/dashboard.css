@@ -349,7 +349,7 @@
 }
 .results_search {
   width:100%; /* Adjust the desired width of the container */
-  height: 35%; /* Adjust the desired height of the container */
+  height: 7.5%; /* Adjust the desired height of the container */
   overflow-y: auto;
     background: #1f1e1e;
 }
@@ -359,7 +359,6 @@
   /* For example: */
   height: fit-content; /* Adjust the desired height of the inner content */
   display: flex;
-  z-index: 99;
   flex-direction: column;
 }
 

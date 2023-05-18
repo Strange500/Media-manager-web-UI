@@ -170,18 +170,7 @@
                     <div class="results_search close" id="result_search">
                       <div class="list_reseach">
                         <ul class="results" id="search_result_target">
-                        <li>
-                          <img src="../static/Default_poster.jpg" alt="poster">
-                          <h5>Oshi no Ko</h5>
-                        </li>
-                        <li>
-                          <img src="../static/Default_poster.jpg" alt="poster">
-                          <h5>Oshi no Ko</h5>
-                        </li>
-                        <li>
-                          <img src="../static/Default_poster.jpg" alt="poster">
-                          <h5>Oshi no Ko</h5>
-                        </li>
+                        Nothing here
                       </ul>
 
 
@@ -562,24 +551,12 @@
   const radioButtons = document.querySelectorAll('input[name="choice"]');
   let searchTimerId;
   const result_box = document.getElementById("search_result_target")
+//add torrent
+  const radioButtons_torrent = document.querySelectorAll('input[name="choice_add"]');
+  const file_box = document.getElementById("file_box");
+  const url_box = document.getElementById("url_box");
 
-  function update_search() {
-    let formData = new FormData();
-    formData.append('choice', getCheckedRadioButtonValue());
-    formData.append('search', search.value);
-    console.log("formData")
-    fetch(`${API_URL}/tmdb/search`, {
-      method: 'POST',
-      body: formData
-    })
-            .then(response => response.json())
-            .then(data => {
-              console.log(data); // Process the response data
-            })
-            .catch(error => {
-              console.error(error);
-            });
-  }
+
   function getCheckedRadioButtonValue() {
 
     let checkedValue = null;
@@ -592,6 +569,53 @@
 
   return checkedValue;
 }
+  function update_add_tor_display_torrent() {
+
+      let checkedValue = null;
+
+      radioButtons.forEach(radioButton => {
+        if (radioButton.checked) {
+          checkedValue = radioButton.value;
+
+        }
+        if (checkedValue === "choice_file") {
+            let div = document.getElementById("file_box");
+            let o_div = document.getElementById("url_box")
+            div.classList.remove("close")
+            div.classList.add("open")
+            o_div.classList.remove("open")
+            o_div.classList.add("close")
+          }
+          else {
+            let div = document.getElementById("file_box");
+            let o_div = document.getElementById("url_box")
+            o_div.classList.remove("close")
+            o_div.classList.add("open")
+            div.classList.remove("open")
+            div.classList.add("close")
+          }
+      });
+
+    return checkedValue;
+  }
+
+  document.getElementById("choice_file").addEventListener('click', function() {
+    if (this.value === 'choice_file') {
+      file_box.classList.remove('close');
+      file_box.classList.add('open');
+      url_box.classList.remove('open');
+      url_box.classList.add('close');
+    }
+});
+
+document.getElementById("choice_url").addEventListener('click', function() {
+  if (this.value === 'choice_url') {
+    file_box.classList.remove('open');
+    file_box.classList.add('close');
+    url_box.classList.remove('close');
+    url_box.classList.add('open');
+  }
+});
   function update_search() {
     let s = query.value
     let typeof_choice = getCheckedRadioButtonValue()
@@ -705,9 +729,7 @@
     div.classList.remove('close')
     div.classList.add('open')
   })
-  //search.addEventListener("focusout", function (event) {
 
-  //})
 
 
 
@@ -716,6 +738,12 @@
 
     searchTimerId = setTimeout(function() {
       const searchText = event.target.value;
+      if (searchText === "") {
+        let div = document.getElementById("result_search")
+      div.classList.add('close')
+      div.classList.remove('open')
+      }
+      else {
       let formData = new FormData();
       formData.append('choice', getCheckedRadioButtonValue());
       formData.append('search', search.value);
@@ -753,12 +781,8 @@
                   cel.setAttribute("data",data["results"][key]["id"] ) ;
                   poster.setAttribute("data",data["results"][key]["id"] ) ;
                   title.setAttribute("data",data["results"][key]["id"] ) ;
-
-
-
                   cel.appendChild(poster)
                   cel.appendChild(title)
-
 
                   cel.addEventListener("click", function (event) {
                     let inp = document.getElementById("id_req")
@@ -773,14 +797,15 @@
                   });
                   result_box.appendChild(cel)
 
-                } // Process the response data
+                }
               })
               .catch(error => {
                 console.error(error);
               });
-      console.log(searchText);
-    }, 500); // Cooldown period in milliseconds
+      console.log(searchText);}
+    }, 500);
 });
+
 
 
 

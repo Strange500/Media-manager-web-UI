@@ -30,15 +30,30 @@ def dashboard():
     if request.method == 'GET':
         return render_template("dashboard.html")
     elif request.method == 'POST':
-        data={'id' : request.form.get('id'), "choice":request.form.get("choice")}
-        response = rq(url=API_URL+"/request/show", data=data, method="POST")
-        print(response.status_code)
-        if response.status_code != 200:
-            error_message = "An error occured"
-            return render_template("dashboard.html", error_message="An error occured")
-        else:
-            error_message = ""
-            return render_template("dashboard.html")
+        if request.form.get('id'):
+            data={'id' : request.form.get('id'), "choice":request.form.get("choice")}
+            response = rq(url=API_URL+"/request/show", data=data, method="POST")
+            print(response.status_code)
+            if response.status_code != 200:
+                error_message = "An error occured"
+                return render_template("dashboard.html", error_message="An error occured")
+            else:
+                error_message = ""
+                return render_template("dashboard.html")
+        elif request.form.get("file") :
+            if type(request.form.get("file")) == str:
+                data = {'url': request.form.get("file")}
+                response = rq(url=API_URL + "/torrent/add/url", data=data, method="POST")
+            else :
+                data = {'file': request.form.get("file")}
+                response = rq(url=API_URL + "/torrent/add/file", data=data, method="POST")
+            if response.status_code != 200:
+                error_message = "An error occured"
+                return render_template("dashboard.html", error_message="An error occured")
+            else:
+                error_message = ""
+                return render_template("dashboard.html")
+
 
 
 
