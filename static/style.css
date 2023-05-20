@@ -9,3 +9,9 @@
     height: 100vh;
     overflow: hidden;
 }
+
+.main_page {
+    display: flex;
+    height: 100%;
+    background: #1f1e1e;
+}

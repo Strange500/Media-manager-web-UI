@@ -54,7 +54,9 @@ def dashboard():
                 error_message = ""
                 return render_template("dashboard.html")
 
-
+@app.route("/upload")
+def upload():
+    return render_template("upload.html")
 
 
 
