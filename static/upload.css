@@ -2,7 +2,55 @@
     width: 90%;
 }
 .choose_upload_box {
-    background: yellow;
+    background: #131212;
+    border: .1vh solid #c708c7;
+    border-radius: 1%;
     width: 40%;
     height: 50%;
+}
+
+.off {
+    display: none;
+    visibility: hidden;
+}
+.on {
+    display: flex;
+    flex-direction: column;
+    visibility: visible;
+}
+
+.loading {
+    overflow: hidden;
+    position: absolute;
+    z-index: 99999;
+    left: 0;
+    top:0;
+    width: 200vh;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    background: rgba(127,127,127,0.2);
+}
+
+.large_load_circle {
+    height: 10vh;
+    width: 10vh;
+    border: 1vh dashed black;
+    border-radius: 50%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    animation: spin 3s linear infinite;
+}
+.small_load_circle {
+    height: 5vh;
+    width: 5vh;
+    border: 1vh dashed #c708c7;
+    border-radius: 50%;
+    animation: spin 2s linear infinite;
+    animation-direction: reverse;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }

@@ -40,7 +40,6 @@ def dashboard():
                 error_message = "An error occured"
                 return render_template("dashboard.html", error_message="An error occured")
             else:
-                error_message = ""
                 return render_template("dashboard.html")
         elif request.form.get("file") :
             if type(request.form.get("file")) == str:
