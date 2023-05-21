@@ -1,7 +1,9 @@
 from flask import Flask, jsonify, redirect, request, render_template
 from requests import request as rq
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 API_URL = "http://127.0.0.1:5000"
 @app.route("/")
 def home():

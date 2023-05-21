@@ -38,13 +38,65 @@
     <div class="upload_page">
 
         <div class="choose_upload_box">
-            hello
+            <form  enctype="multipart/form-data" action="http://127.0.0.1:5000/upload" id="up_form" method="post">
+            <ul>
+              <li>
+                <label for="up_choice_anime">Anime</label>
+                <input type="radio" name="up_choice" id="up_choice_anime" value="anime">
+              </li>
+              <li>
+                <label for="up_choice_show">Show</label>
+                <input type="radio" name="up_choice" id="up_choice_show" value="show">
+              </li>
+              <li>
+                <label for="up_choice_movie">Movie</label>
+                <input type="radio" name="up_choice" id="up_choice_movie" value="movie" checked>
+              </li>
+              <li>
+                <label for="up_choice_encode">Re-encode</label>
+                <input type="radio" name="up_choice" value="encode" id="up_choice_encode" >
+              </li>
+            </ul>
+            <input type="file" id="fileInput" name="file">
+            </form>
+            <div class="div_upload_prog">
+
+
+                <button id="bt_up">Upload</button>
+
+              <div class="progress_bar">
+                <div class="progress">
+
+                </div>
+              </div>
+            </div>
+
         </div>
 
     </div>
 
   </div>
 </div>
+
+<script>
+    const form = document.getElementById("up_form")
+    const bt = document.getElementById("bt_up")
+
+
+
+    bt.addEventListener("click", function (event) {
+        let newform = new FormData(form)
+
+        fetch("http://127.0.0.1:5000/upload", {
+        method: "POST",
+        body: newform})
+            .then(response => response.json())
+            .then(response => {
+                console.log(response)
+            })
+    })
+
+</script>
 
 
 </body>

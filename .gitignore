@@ -6,3 +6,5 @@
 *.xml
 stock.html
 styles.css
+templates/test.html
+static/sr.js
