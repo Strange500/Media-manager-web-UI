@@ -1,10 +1,14 @@
 from flask import Flask, jsonify, redirect, request, render_template
 from requests import request as rq
 from flask_cors import CORS
+import socket
 
 app = Flask(__name__)
 CORS(app)
-API_URL = "http://127.0.0.1:5000"
+hostname = socket.gethostname()
+IP = socket.gethostbyname(hostname)
+
+API_URL = f"http://{IP}:5000"
 @app.route("/")
 def home():
     return redirect("/login")
@@ -30,7 +34,7 @@ def login():
 @app.route("/dashboard", methods=["GET", "POST"])
 def dashboard():
     if request.method == 'GET':
-        return render_template("dashboard.html")
+        return render_template("dashboard.html", api_url = API_URL)
     elif request.method == 'POST':
         if request.form.get('id'):
             data={'id' : request.form.get('id'), "choice":request.form.get("choice")}
@@ -40,7 +44,7 @@ def dashboard():
                 error_message = "An error occured"
                 return render_template("dashboard.html", error_message="An error occured")
             else:
-                return render_template("dashboard.html")
+                return render_template("dashboard.html", api_url = API_URL)
         elif request.form.get("file") :
             if type(request.form.get("file")) == str:
                 data = {'url': request.form.get("file")}
@@ -50,16 +54,20 @@ def dashboard():
                 response = rq(url=API_URL + "/torrent/add/file", data=data, method="POST")
             if response.status_code != 200:
                 error_message = "An error occured"
-                return render_template("dashboard.html", error_message="An error occured")
+                return render_template("dashboard.html", error_message="An error occured", api_url = API_URL)
             else:
                 error_message = ""
-                return render_template("dashboard.html")
+                return render_template("dashboard.html", api_url = API_URL)
 
 @app.route("/upload")
 def upload():
-    return render_template("upload.html")
+    return render_template("upload.html", api_url=API_URL)
+
+@app.route("/test")
+def test():
+    return render_template("test.html", api_url=API_URL)
 
 
 
 if __name__ == "__main__":
-    app.run(port=8080)
+    app.run(host=IP, port=8080)

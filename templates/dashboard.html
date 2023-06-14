@@ -27,6 +27,11 @@
             Add file
           </li>
         </a>
+        <a href="/test" class="menu_item">
+          <li class="menu-sub-item">
+            Test
+          </li>
+        </a>
         <a href="#" class="menu_item">
           <li class="menu-sub-item">
             stat
@@ -358,15 +363,7 @@
                 <h5 class="nb" id="nb_movie">Number of Movie : 450</h5>
             </div>
             <div class="main_bottom_graph_box">
-                <div class="chart" id="chart_show">
-                    <div class="sector" id="completed_show"></div>
-                    <div class="sector" id="uncompleted_show"></div>
-                </div>
 
-              <div class="chart" id="chart_Anime">
-                    <div class="sector" id="completed_anime"></div>
-                    <div class="sector" id="uncompleted_anime"></div>
-                </div>
             </div>
           </div>
         </div>
@@ -520,8 +517,9 @@
   </div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.2.0/socket.io.js"></script>
 <script >
-  const API_URL = "http://127.0.0.1:5000"
+  const API_URL = "{{ api_url }}"
   const TMDB_URL = "https://image.tmdb.org/t/p/w500"
 
   const search = document.getElementById("search")
@@ -555,6 +553,80 @@
   const radioButtons_torrent = document.querySelectorAll('input[name="choice_add"]');
   const file_box = document.getElementById("file_box");
   const url_box = document.getElementById("url_box");
+
+
+  const socket = io(API_URL);
+
+  // Gérer l'événement de connexion
+    socket.on('connect', () => {
+      console.log('Connecté au serveur');
+    });
+
+    // Gérer l'événement de déconnexion
+    socket.on('disconnect', () => {
+      console.log('Déconnecté du serveur');
+    });
+
+    // Envoyer un message au serveur
+    socket.emit('message', 'ready');
+
+    // Gérer la réponse du serveur
+    socket.on('response', (data) => {
+      console.log('Réponse du serveur :', data);
+    });
+
+    socket.on('update', (data) => {
+      console.log('Réponse du serveur :', data);
+    });
+
+    socket.on("cpu_temp", (response) => {
+      response = JSON.parse(response);
+      if (response["value"] > 50) {
+        current_temp.style.color = "red";
+      }
+      if (response["value"] > 40) {
+        current_temp.style.color = "orange"
+      }
+      else {
+        current_temp.style.color = "green"
+      }
+      current_temp.innerHTML = response["value"] + "°c"
+
+    })
+
+    socket.on("cpu_temp_avg", (response) => {
+      response = JSON.parse(response);
+      if (response["value"] > 50) {
+              avg_cpu_temp.style.color = "red";
+            }
+            if (response["value"] > 40) {
+              avg_cpu_temp.style.color = "orange"
+            }
+            else {
+              avg_cpu_temp.style.color = "green"
+            }
+            avg_cpu_temp.innerHTML = response["value"] + "°c"
+
+    })
+
+    socket.on("anime_size", (response) => {
+      response = JSON.parse(response);
+      anime_progress.style.width = (response["used"]/response["free"])*100 + "%";
+      anime_pross_text.innerHTML = convertToGigabytes(response["used"])+"Go/"+convertToGigabytes(response["free"]+response["used"])+"Go";
+    })
+
+  socket.on("movie_size", (response) => {
+      response = JSON.parse(response);
+      movie_progress.style.width = (response["used"]/response["free"])*100 + "%";
+      movie_pross_text.innerHTML = convertToGigabytes(response["used"])+"Go/"+convertToGigabytes(response["free"]+response["used"])+"Go";
+  })
+
+  socket.on("show_size", (response) => {
+      response = JSON.parse(response);
+      show_progress.style.width = (response["used"]/response["free"])*100 + "%";
+      show_pross_text.innerHTML = convertToGigabytes(response["used"])+"Go/"+convertToGigabytes(response["free"]+response["used"])+"Go";
+  })
+
 
 
   function getCheckedRadioButtonValue() {
@@ -608,7 +680,7 @@
     }
 });
 
-document.getElementById("choice_url").addEventListener('click', function() {
+  document.getElementById("choice_url").addEventListener('click', function() {
   if (this.value === 'choice_url') {
     file_box.classList.remove('open');
     file_box.classList.add('close');
@@ -635,7 +707,7 @@ document.getElementById("choice_url").addEventListener('click', function() {
       return gigabytes;
     }
 
-    async function update_rep() {
+  async function update_rep() {
       try {
         const nb_anime_response = await fetch(`${API_URL}/anime/nb`);
         const nb_ani = await nb_anime_response.json();
@@ -653,52 +725,6 @@ document.getElementById("choice_url").addEventListener('click', function() {
   }
 }
 
-  fetch(`${API_URL}/anime/size`)
-          .then(response => response.json())
-          .then(response => {
-            anime_progress.style.width = (response["used"]/response["free"])*100 + "%";
-            anime_pross_text.innerHTML = convertToGigabytes(response["used"])+"Go/"+convertToGigabytes(response["free"]+response["used"])+"Go";
-          })
-  fetch(`${API_URL}/show/size`)
-          .then(response => response.json())
-          .then(response => {
-            show_progress.style.width = (response["used"]/response["free"])*100 + "%";
-            show_pross_text.innerHTML = convertToGigabytes(response["used"])+"Go/"+convertToGigabytes(response["free"]+response["used"])+"Go";
-          })
-  fetch(`${API_URL}/movie/size`)
-          .then(response => response.json())
-          .then(response => {
-            movie_progress.style.width = (response["used"]/response["free"])*100 + "%";
-            movie_pross_text.innerHTML = convertToGigabytes(response["used"])+"Go/"+convertToGigabytes(response["free"]+response["used"])+"Go";
-          })
-  fetch(`${API_URL}/cpu_temp/current`)
-          .then(response => response.json())
-          .then(response => {
-            if (response["value"] > 50) {
-              current_temp.style.color = "red";
-            }
-            if (response["value"] > 40) {
-              current_temp.style.color = "orange"
-            }
-            else {
-              current_temp.style.color = "green"
-            }
-            current_temp.innerHTML = response["value"] + "°c"
-          })
-  fetch(`${API_URL}/cpu_temp/avg`)
-          .then(response => response.json())
-          .then(response => {
-            if (response["value"] > 50) {
-              avg_cpu_temp.style.color = "red";
-            }
-            if (response["value"] > 40) {
-              avg_cpu_temp.style.color = "orange"
-            }
-            else {
-              avg_cpu_temp.style.color = "green"
-            }
-            avg_cpu_temp.innerHTML = response["value"] + "°c"
-          })
   update_rep()
 
 
@@ -708,30 +734,27 @@ document.getElementById("choice_url").addEventListener('click', function() {
       if (radioButton.checked) {
         const selectedValue = radioButton.value;
         if (selectedValue === "choice_url") {
-          add_url.classList.add("open")
-          add_url.classList.remove('close')
-          add_file.classList.add("close")
-          add_file.classList.remove('open')
+          add_url.classList.add("open");
+          add_url.classList.remove('close');
+          add_file.classList.add("close");
+          add_file.classList.remove('open');
 
         }
         if (selectedValue === "choice_file") {
-          add_file.classList.add("open")
-          add_file.classList.remove('close')
-          add_url.classList.add("close")
-          add_url.classList.remove('open')
+          add_file.classList.add("open");
+          add_file.classList.remove('close');
+          add_url.classList.add("close");
+          add_url.classList.remove('open');
         }
       }
     });
   });
 
   search.addEventListener("focus", function (event) {
-    let div = document.getElementById("result_search")
-    div.classList.remove('close')
-    div.classList.add('open')
+    let div = document.getElementById("result_search");
+    div.classList.remove('close');
+    div.classList.add('open');
   })
-
-
-
 
   search.addEventListener('input', function(event) {
     clearTimeout(searchTimerId);
@@ -805,6 +828,15 @@ document.getElementById("choice_url").addEventListener('click', function() {
       console.log(searchText);}
     }, 500);
 });
+
+  socket.emit("message", "cpu_temp");
+  socket.emit("message", "anime_size");
+  socket.emit("message", "movie_size");
+  socket.emit("message", "show_size");
+  socket.emit("message", "cpu_temp_avg");
+
+
+
 
 
 

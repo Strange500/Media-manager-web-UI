@@ -46,7 +46,7 @@
       </div>
 
         <div class="choose_upload_box" id="choose_upload_box">
-            <form  enctype="multipart/form-data" action="http://127.0.0.1:5000/upload" id="up_form" method="post">
+            <form  enctype="multipart/form-data" action="{{ api_url }}/upload" id="up_form" method="post">
             <ul>
               <li>
                 <label for="up_choice_anime">Anime</label>
@@ -83,6 +83,7 @@
 </div>
 
 <script>
+    const API_URL = "{{ api_url }}"
     const form = document.getElementById("up_form")
     const bt = document.getElementById("bt_up")
     const load = document.getElementById("loadind")
@@ -94,7 +95,7 @@
         load.classList.add("on")
         let newform = new FormData(form)
 
-        fetch("http://127.0.0.1:5000/upload", {
+        fetch(API_URL+"/upload", {
         method: "POST",
         body: newform})
             .then(response => {
